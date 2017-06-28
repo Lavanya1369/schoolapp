@@ -1,3 +1,11 @@
+
+
+<?php
+ob_start();
+//error_reporting(0);
+session_start();
+include 'myconnection.php';
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,11 +33,11 @@
 	           <div class="col-md-5">
 	              <!-- Logo -->
 	              <div class="logo">
-	                 <h1><a href="index.html">Bootstrap Admin Theme</a></h1>
+	                 <h1><a href="index.html">FeedBack</a></h1>
 	              </div>
 	           </div>
 	           <div class="col-md-5">
-	              <div class="row">
+	              <!-- <div class="row">
 	                <div class="col-lg-12">
 	                  <div class="input-group form">
 	                       <input type="text" class="form-control" placeholder="Search...">
@@ -38,10 +46,10 @@
 	                       </span>
 	                  </div>
 	                </div>
-	              </div>
+	              </div> -->
 	           </div>
 	           <div class="col-md-2">
-	              <div class="navbar navbar-inverse" role="banner">
+	              <!-- <div class="navbar navbar-inverse" role="banner">
 	                  <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
 	                    <ul class="nav navbar-nav">
 	                      <li class="dropdown">
@@ -53,7 +61,7 @@
 	                      </li>
 	                    </ul>
 	                  </nav>
-	              </div>
+	              </div> -->
 	           </div>
 	        </div>
 	     </div>
@@ -68,9 +76,9 @@
                     <li><a href="index.html"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
                     <li><a href="calendar.html"><i class="glyphicon glyphicon-calendar"></i> Calendar</a></li>
                     <li><a href="stats.html"><i class="glyphicon glyphicon-stats"></i> Statistics (Charts)</a></li>
-                    <li><a href="tables.html"><i class="glyphicon glyphicon-list"></i> Tables</a></li>
+                    <li class="current"><a href="tables.html"><i class="glyphicon glyphicon-list"></i> Tables</a></li>
                     <li><a href="buttons.html"><i class="glyphicon glyphicon-record"></i> Buttons</a></li>
-                    <li class="current"><a href="editors.html"><i class="glyphicon glyphicon-pencil"></i> Editors</a></li>
+                    <li><a href="editors.html"><i class="glyphicon glyphicon-pencil"></i> Editors</a></li>
                     <li><a href="forms.html"><i class="glyphicon glyphicon-tasks"></i> Forms</a></li>
                     <li class="submenu">
                          <a href="#">
@@ -88,75 +96,60 @@
 		  </div>
 		  <div class="col-md-10">
 
+
+
+
+
+
+
+
   			<div class="content-box-large">
-          <div class="panel-heading">
-            <div class="panel-title">CKEditor Standard</div>
+  				<div class="panel-heading">
+					<div class="panel-title">Bootstrap dataTables</div>
+				</div>
+  				<div class="panel-body">
+  					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+						<thead>
+							<tr>
+								<th>parentid</th>
+								<th>studentname</th>
+								<th>student_rollno</th>
+								<th>data_feedback</th>
 
-            <div class="panel-options">
-              <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-              <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
-            </div>
-          </div>
-          <div class="panel-body">
-            <textarea id="ckeditor_standard"></textarea>
-          </div>
-        </div>
+							</tr>
+						</thead>
+						<tbody>
 
-        <div class="content-box-large">
-          <div class="panel-heading">
-          <div class="panel-title">CKEditor Full</div>
 
-          <div class="panel-options">
-            <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-            <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
-          </div>
-        </div>
-          <div class="panel-body">
-            <textarea id="ckeditor_full"></textarea>
-          </div>
-        </div>
+              <?php
+                                     $i=0;
+                                      $sql="SELECT * FROM `feedback`";
+                                $result=mysqli_query($con,$sql);
 
-        <div class="content-box-large">
-          <div class="panel-heading">
-          <div class="panel-title">TinyMCE Basic</div>
+                                   while($row=mysqli_fetch_array($result))
+                                                       {
+                                                           $sn=$row['sno'];
+                                                           $i=$i+1;
+                                                       ?>
 
-          <div class="panel-options">
-            <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-            <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
-          </div>
-        </div>
-          <div class="panel-body">
-            <textarea id="tinymce_basic"></textarea>
-          </div>
-        </div>
 
-        <div class="content-box-large">
-          <div class="panel-heading">
-          <div class="panel-title">TinyMCE Full</div>
+                                                  <td><?php echo $row['parentid'];?></td>
+                                                    <td><?php echo $row['studentname'];?></td>
 
-          <div class="panel-options">
-            <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-            <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
-          </div>
-        </div>
-          <div class="panel-body">
-            <textarea id="tinymce_full"></textarea>
-          </div>
-        </div>
+                                                      <td><?php echo $row['st_rollno'];?></td>
+                                                     <td><?php echo $row['data_feedback'];?></td>
 
-        <div class="content-box-large">
-          <div class="panel-heading">
-          <div class="panel-title">Bootstrap WYSIWYG</div>
+                                                       </tr>
 
-          <div class="panel-options">
-            <a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-            <a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
-          </div>
-        </div>
-          <div class="panel-body">
-            <textarea id="bootstrap-editor" placeholder="Enter text ..." style="width:98%;height:200px;"></textarea>
-          </div>
-        </div>
+                                                       <?php
+                                                       }
+                                                       ?>
+
+
+						</tbody>
+					</table>
+  				</div>
+  			</div>
 
 
 
@@ -164,17 +157,9 @@
 		</div>
     </div>
 
-    <footer>
-         <div class="container">
 
-            <div class="copy text-center">
-               Copyright 2014 <a href='#'>Website</a>
-            </div>
 
-         </div>
-      </footer>
-
-     <link rel="stylesheet" type="text/css" href="vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.css"></link>
+      <link href="vendors/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -183,15 +168,11 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
-    <script src="vendors/bootstrap-wysihtml5/lib/js/wysihtml5-0.3.0.js"></script>
-    <script src="vendors/bootstrap-wysihtml5/src/bootstrap-wysihtml5.js"></script>
+    <script src="vendors/datatables/js/jquery.dataTables.min.js"></script>
 
-    <script src="vendors/ckeditor/ckeditor.js"></script>
-    <script src="vendors/ckeditor/adapters/jquery.js"></script>
-
-    <script type="text/javascript" src="vendors/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script src="vendors/datatables/dataTables.bootstrap.js"></script>
 
     <script src="js/custom.js"></script>
-    <script src="js/editors.js"></script>
+    <script src="js/tables.js"></script>
   </body>
 </html>
